@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useReducer, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useReducer, useRef, useState } from "react";
 
 import Card from "../../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../../UI/Button/Button";
 import AuthContext from "../../store/auth-context";
 import Input from "../../UI/Input/LoginInput/Input"
+import useHttp from "../../hooks/use-http";
 
 const emailReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
@@ -33,6 +34,12 @@ const passwordReducer = (state, action) => {
 };
 
 const Login = () => {
+  // const [enteredEmail, setEnteredEmail] = useState('');
+  // const [emailIsValid, setEmailIsValid] = useState();
+  // const [enteredPassword, setEnteredPassword] = useState('');
+  // const [passwordIsValid, setPasswordIsValid] = useState();
+  const { isLoading, error, sendHttpRequest: requestLogin } = useHttp();
+
   const useAuthContext = useContext(AuthContext);
   const inputRef = useRef();
   const [formIsValid, setFormIsValid] = useState(false);
@@ -82,16 +89,36 @@ const Login = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
-      useAuthContext.onLogin(email, password);
+      console.log("Go for login code")
+      requestLoginHandler();
+      // useAuthContext.onLogin(email, password);
     } else if (!isEmailValid) {
       inputRef.current.triggerSomefunction() // example to control over child component method from parent
     } else {
 
     }
   };
+  const transformRequest = useCallback((responsedata) => {
+    const transformedProducts = [];
+    useAuthContext.onLogin(email, password);
+  }, []);
+
+  const requestLoginHandler = useCallback(() => {
+    requestLogin(
+      {
+        url: "http://localhost:3000/login",
+        method: "POST",
+        body: { "username": email, "password": password },
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+      transformRequest
+    );
+  }, [email, password, requestLogin, transformRequest]);
 
   return (
-    <Card className={classes.login} isLoggedIn={!useAuthContext.isLoggedIn}>
+    <Card className={classes.login}>
       <form onSubmit={submitHandler}>
         <Input
           id={"email"}
@@ -115,7 +142,7 @@ const Login = () => {
         />
         <div className={classes.actions}>
           <Button type="submit" className={classes.btn} /* disabled={!formIsValid}*/ >
-            Login
+            Login {isLoading ? "Loading .." : ""} {error ? "Error .." + error : ""}
           </Button>
         </div>
       </form>
