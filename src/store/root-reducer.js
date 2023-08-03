@@ -1,3 +1,4 @@
+// @ts-ignore
 import { createSlice } from "@reduxjs/toolkit";
 
 export const defaultState = {

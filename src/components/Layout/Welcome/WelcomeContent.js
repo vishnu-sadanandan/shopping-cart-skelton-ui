@@ -1,3 +1,4 @@
+// @ts-nocheck
 import styles from './WelcomeContent.module.css';
 
 const WelcomeContent = () => {

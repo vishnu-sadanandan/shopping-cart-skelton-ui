@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useCallback, useContext, useEffect, useReducer, useRef, useState } from "react";
 
 import Card from "../../UI/Card/Card";
