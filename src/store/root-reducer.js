@@ -18,13 +18,25 @@ const userSlice = createSlice({
 
 const productSlice = createSlice({
   name: "product-slice",
-  initialState: defaultState,
+  initialState: {...defaultState, isLoading: false},
   reducers: {
-    loadProducts(state, action) {
+    setProducts(state, action) {
       const items = action.payload;
       return {
         ...state,
         items: items
+      };
+    },
+    setProductRequestLoading(state, action) {
+      return {
+        ...state,
+        isLoading: true
+      };
+    },
+    setProductRequestCompleted(state, action) {
+      return {
+        ...state,
+        isLoading: false
       };
     }
   }
@@ -165,6 +177,7 @@ const cartReducer = (state = defaultState, actions) => {
 export const userSliceActions = userSlice.actions;
 export const cartSliceActions = cartSlice.actions;
 export const productSliceActions = productSlice.actions;
+export const productSliceActionsTypes = productSlice.name;
 
 export const cartSliceReducer = cartSlice.reducer;
 export const userSliceReducer = userSlice.reducer;
