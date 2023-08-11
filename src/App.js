@@ -1,35 +1,12 @@
 import React, { useState, useContext } from "react";
 import HeaderMenu from "./components/Layout/Header/HeaderMenu";
 import Home from "./components/Home/Home";
-import Products from "./components/Products/Products";
-import WelcomeContent from "./components/Layout/Welcome/WelcomeContent";
 import OpenCart from "./components/Cart/OpenCart";
 import Login from "./components/Login/Login";
 import styles from "./App.module.css";
 import CartProvider from "./store/CartProvider";
 import AuthContext from "./store/auth-context";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ProductDetails from "./components/Products/ProductDetails";
-import Page from "./components";
-
-  const routerConfig = createBrowserRouter([
-    {
-      path: '/',
-      element: <Page />,
-      children: [
-        {
-          index: true,
-          element: <Products />,
-        },
-        {
-          path: '/:productId',
-          element: <ProductDetails />,
-        }
-      ],
-    },
-  ]);
-
-
+import PageRouterProvider from "./router/PageRouterProvider"
 
 const App = () => {
   const useAuthContext = useContext(AuthContext);
@@ -53,8 +30,7 @@ const App = () => {
           {!useAuthContext.isLoggedIn && <Login />}
           {useAuthContext.isLoggedIn && <HeaderMenu onCartOpen={onCartOpen} />}
           <Home />
-          <WelcomeContent />
-          <RouterProvider router={routerConfig} />
+          <PageRouterProvider />
           {isCartOpen && (
             <OpenCart
               onCartClose={onCartClose}

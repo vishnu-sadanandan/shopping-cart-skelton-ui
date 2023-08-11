@@ -31,7 +31,7 @@ function* setProducts() {
   }
 }
 
-// Watcher Saga: Listens for FETCH_DATA_REQUEST action and triggers fetchDataSaga
+// Watcher Saga: Listens for FETCH_DATA_REQUEST (`${productSliceActionsTypes}/setProductRequestLoading`) action and triggers fetchDataSaga
 function* watchFetchData() {
   yield takeEvery(`${productSliceActionsTypes}/setProductRequestLoading`, setProducts);
 }

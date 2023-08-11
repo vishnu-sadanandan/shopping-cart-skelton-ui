@@ -13,7 +13,6 @@ root.render(
   // <React.StrictMode>
   <AuthContextProvider>
     <Provider store={store}>
-      {/* <RouterProvider router={routerConfig} /> */}
       <App />
     </Provider>
   </AuthContextProvider>
