@@ -6,9 +6,9 @@ import LoginButton from './LoginButton.js'
 const Headermenu = (props) => {
     return (<>
         <header className={styles.header}>
-            <LoginButton onClick={props.onCartOpen} />
-            <span>Shopping Cart</span>
-            <HeaderCartButton onClick={props.onCartOpen} />
+            <div className={styles.left}><LoginButton onClick={props.onCartOpen} /></div>
+            <div className={styles.middle}><span>Shopping Cart</span></div>
+            <div className={styles.right}><HeaderCartButton onClick={props.onCartOpen} /></div>
         </header>
     </>);
 }

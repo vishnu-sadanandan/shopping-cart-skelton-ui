@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import HeaderMenu from "./components/Layout/Header/HeaderMenu";
-import Home from "./components/Home/Home";
+// import Home from "./components/Home/Home";
 import OpenCart from "./components/Cart/OpenCart";
 import Login from "./components/Login/Login";
 import styles from "./App.module.css";
@@ -29,7 +29,7 @@ const App = () => {
         <main className={styles.app}>
           {!useAuthContext.isLoggedIn && <Login />}
           {useAuthContext.isLoggedIn && <HeaderMenu onCartOpen={onCartOpen} />}
-          <Home />
+          {/* <Home /> */}
           <PageRouterProvider />
           {isCartOpen && (
             <OpenCart
