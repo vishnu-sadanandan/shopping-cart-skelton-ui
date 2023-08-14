@@ -7,6 +7,7 @@ import Button from "../../UI/Button/Button";
 import AuthContext from "../../store/auth-context";
 import Input from "../../UI/Input/LoginInput/Input"
 import useHttp from "../../hooks/use-http";
+import Modal from "../../UI/Modal/Modal";
 
 const emailReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
@@ -113,35 +114,37 @@ const Login = () => {
   }, [email, password, requestLogin, transformRequest]);
 
   return (
-    <Card className={classes.login}>
-      <form onSubmit={submitHandler}>
-        <Input
-          id={"email"}
-          type={"email"}
-          label={"Email"}
-          value={email}
-          isValid={isEmailValid}
-          onChange={emailChangeHandler}
-          onBlur={validateEmailHandler}
-          onFocus={true} // pass focus state to set the focus in input
-          ref={inputRef} // alternatively control the child input method using inputRef.current.triggerSomeFunction()
-        />
-        <Input
-          id={"password"}
-          type={"password"}
-          label={"Password"}
-          value={password}
-          isValid={isPasswordValid}
-          onChange={passwordChangeHandler}
-          onBlur={validatePasswordHandler}
-        />
-        <div className={classes.actions}>
-          <Button type="submit" className={classes.btn} /* disabled={!formIsValid}*/ >
-            Login {isLoading ? "Loading .." : ""} {error ? "Error .." + error : ""}
-          </Button>
-        </div>
-      </form>
-    </Card>
+    <Modal>
+      <Card className={classes.login}>
+        <form onSubmit={submitHandler}>
+          <Input
+            id={"email"}
+            type={"email"}
+            label={"Email"}
+            value={email}
+            isValid={isEmailValid}
+            onChange={emailChangeHandler}
+            onBlur={validateEmailHandler}
+            onFocus={true} // pass focus state to set the focus in input
+            ref={inputRef} // alternatively control the child input method using inputRef.current.triggerSomeFunction()
+          />
+          <Input
+            id={"password"}
+            type={"password"}
+            label={"Password"}
+            value={password}
+            isValid={isPasswordValid}
+            onChange={passwordChangeHandler}
+            onBlur={validatePasswordHandler}
+          />
+          <div className={classes.actions}>
+            <Button type="submit" className={classes.btn} /* disabled={!formIsValid}*/ >
+              Login {isLoading ? "Loading .." : ""} {error ? "Error .." + error : ""}
+            </Button>
+          </div>
+        </form>
+      </Card>
+    </Modal>
   );
 };
 
