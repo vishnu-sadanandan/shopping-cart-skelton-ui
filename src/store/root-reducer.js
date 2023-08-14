@@ -42,6 +42,35 @@ const productSlice = createSlice({
   }
 });
 
+const orderSlice = createSlice({
+  name: "order-slice",
+  initialState: { order: [], isLoading: false},
+  reducers: {
+    setOrders(state, action) {
+      const orders = action.payload;
+      return {
+        ...state,
+        order: orders
+      };
+    },
+    setOrderRequestLoading(state) {
+      return {
+        ...state,
+        isLoading: true
+      };
+    },
+    setOrderRequestCompleted(state) {
+      return {
+        ...state,
+        isLoading: false
+      };
+    }
+  }
+});
+
+
+
+
 const cartSlice = createSlice({
   name: "cart-slice",
   initialState: defaultState,
@@ -176,12 +205,17 @@ const cartReducer = (state = defaultState, actions) => {
   };
 export const userSliceActions = userSlice.actions;
 export const cartSliceActions = cartSlice.actions;
+
 export const productSliceActions = productSlice.actions;
 export const productSliceActionsTypes = productSlice.name;
+
+export const orderSliceActions = orderSlice.actions;
+export const orderSliceActionsTypes = orderSlice.name;
 
 export const cartSliceReducer = cartSlice.reducer;
 export const userSliceReducer = userSlice.reducer;
 export const productSliceReducer = productSlice.reducer;
+export const orderSliceReducer = orderSlice.reducer;
 
 
 export default cartReducer;

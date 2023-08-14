@@ -10,11 +10,17 @@ const OpenCart = (props) => {
         <CartItemsTotal />
         {props.showCehckoutForm && <Checkout />}
         <div className={styles.actions}>
-          <button className={styles["button--alt"]} onClick={props.onCartClose}>
-            Close
-          </button>
-          <button className={styles["button"]} onClick={props.onCheckoutFormOpen}>{props.showCehckoutForm ? `Cancel` : `Order`}</button>
-        </div>
+          <div className={styles.left}>
+            <button className={styles["button--alt"]} onClick={props.onCartClose}>
+                Close
+            </button>
+          </div>
+          <div className={styles.right}>
+            <button className={styles["button"]} onClick={props.onCheckoutFormOpen}>
+              {props.showCehckoutForm ? `Cancel` : `Order`}
+            </button>
+          </div>
+          </div>
       </Modal>
     </>
   );

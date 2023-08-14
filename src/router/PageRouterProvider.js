@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ProductDetails, Products, PageOutlet, Login } from "../components";
+import { ProductDetails, Products, Orders, PageOutlet, Login } from "../components";
 
 const routerConfig = createBrowserRouter([
     {
@@ -9,6 +9,10 @@ const routerConfig = createBrowserRouter([
         {
           index: true,
           element: <Products />,
+        },
+        {
+          path: '/orders',
+          element: <Orders />,
         },
         {
           path: '/login',

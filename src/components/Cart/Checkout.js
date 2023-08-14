@@ -3,6 +3,7 @@ import useInput from "../../hooks/use-input";
 import styles from "./Checkout.module.css"
 import useHttp from "../../hooks/use-http";
 import CartContext from "../../store/cart-context";
+import { useSelector } from "react-redux";
 
 const apiUrl = "https://react-http-a675e-default-rtdb.firebaseio.com/order.json";
 
@@ -14,12 +15,12 @@ const Checkout = () => {
   const { isLoading, error, sendHttpRequest: requestOrder } = useHttp();
   const [orderResponse, setOrderResponse] = useState(null);
 
-  const useCartContext = useContext(CartContext);
+  const storeProducts = useSelector(state => state.cart.items);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
     if (isFormValid && isEnteredNameValid && isEnteredAddressValid) {
-      requestOrderHandler({ user: { name, address }, order: useCartContext.items });
+      requestOrderHandler({ user: { name, address }, order: storeProducts });
       resetNameInput();
       resetAddressInput();
     }
