@@ -35,12 +35,7 @@ const passwordReducer = (state, action) => {
 };
 
 const Login = () => {
-  // const [enteredEmail, setEnteredEmail] = useState('');
-  // const [emailIsValid, setEmailIsValid] = useState();
-  // const [enteredPassword, setEnteredPassword] = useState('');
-  // const [passwordIsValid, setPasswordIsValid] = useState();
   const { isLoading, error, sendHttpRequest: requestLogin } = useHttp();
-
   const useAuthContext = useContext(AuthContext);
   const inputRef = useRef();
   const [formIsValid, setFormIsValid] = useState(false);
@@ -90,19 +85,18 @@ const Login = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
-      console.log("Go for login code")
       requestLoginHandler();
-      // useAuthContext.onLogin(email, password);
     } else if (!isEmailValid) {
       inputRef.current.triggerSomefunction() // example to control over child component method from parent
     } else {
 
     }
   };
+
   const transformRequest = useCallback((responsedata) => {
-    const transformedProducts = [];
     useAuthContext.onLogin(email, password);
-  }, []);
+    useAuthContext.setToken(responsedata.token);
+  }, [email, password, useAuthContext]);
 
   const requestLoginHandler = useCallback(() => {
     requestLogin(
