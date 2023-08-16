@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import store from "./store/redux-store"
 import { Provider } from 'react-redux';
 import { AuthContextProvider } from './store/auth-context';
+import { NextUIProvider } from "@nextui-org/react";
+import 'tailwindcss/tailwind.css'; // Import Tailwind's base styles
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -13,7 +15,9 @@ root.render(
   // <React.StrictMode>
   <AuthContextProvider>
     <Provider store={store}>
-      <App />
+      <NextUIProvider>
+        <App />
+      </NextUIProvider>
     </Provider>
   </AuthContextProvider>
   // </React.StrictMode>

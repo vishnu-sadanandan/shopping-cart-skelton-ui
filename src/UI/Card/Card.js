@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "./Card.module.css"
+import { Card as CardUI, CardBody, Spinner } from "@nextui-org/react";
 
 const Card = (props) => {
     const isLoggedIn = props.isLoggedIn
@@ -9,9 +9,13 @@ const Card = (props) => {
         childrens = `User needs to be logged in !`
     }
 
-    return (<div className={`${styles.card} ${props.className}`}>
-        {props.isLoading ? `Content loading ...` : childrens}
-
+    return (
+        <div className={`${props.className?props.className:""} light`}>
+            <CardUI>
+                <CardBody>
+                    {props.isLoading ? <Spinner /> : childrens}
+                </CardBody>
+            </CardUI>
     </div> );
 }
 

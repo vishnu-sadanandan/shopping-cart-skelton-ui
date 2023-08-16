@@ -23,12 +23,14 @@ const Products = () => {
   return (
     <section className={styles.meals}>
       <Card isLoading={isLoading} isLoggedIn={useAuthContext.isLoggedIn}>
-        <ul>
-          {products.length > 0 && products.map((item) => {
-            return <ProductItem key={item.id} item={item} />;
-          })}
-          {products.length === 0 && <li>No products found!</li>}
-        </ul>
+        <div className={`${styles.productGridContainer}`}>
+          <ul className={styles.productGrid}>
+            {products.length > 0 && products.map((item) => {
+              return <ProductItem key={item.id} item={item} />;
+            })}
+            {products.length === 0 && <li>No products found!</li>}
+          </ul>
+        </div>
       </Card>
     </section>
   );

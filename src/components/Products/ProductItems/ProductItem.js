@@ -6,12 +6,14 @@ import { connect } from 'react-redux'
 import { cartSliceActions } from '../../../store/root-reducer'
 import { Link } from 'react-router-dom'
 class ProductItem extends Component {
+
   onItemAdd(item) {
     this.props.dispatchFromStore(item);
   }
 
   render() {
     const price = `$${this.props.item.price.toFixed(2)}`
+    const {isEnableAddItem} = this.props;
     return (
       <>
         <li className={styles.item}>
@@ -20,9 +22,10 @@ class ProductItem extends Component {
             <div className={styles.description}>{this.props.item.description}</div>
             <div className={styles.price}>{price}</div>
           </div>
-          <div>
+          {!isEnableAddItem && <div>
             <ProductItemForm {...this.props.item} onItemAdd={this.onItemAdd.bind(this)} />
           </div>
+          }
         </li>
       </>
     );

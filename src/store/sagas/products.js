@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, select, takeEvery } from 'redux-saga/effects';
 import { productSliceActions, productSliceActionsTypes } from "../root-reducer"
 
 const apiUrl = "https://react-http-a675e-default-rtdb.firebaseio.com/products.json";
@@ -24,7 +24,7 @@ async function fetchProducts() {
 }
 
 // Worker Saga: Handles the actual API call and dispatches success or failure actions
-function* setProducts() {
+function* setProducts(action) {
   try {
     const data = yield call(fetchProducts);
     const transformedProducts = [];
@@ -44,9 +44,23 @@ function* setProducts() {
   }
 }
 
+function* setSearchProducts(action) {
+  const term = action.payload;
+  const state = yield select();
+  const products = state.product.items
+  let filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(term.toLowerCase())
+  );
+  filteredProducts = term !== "" ? filteredProducts : products
+  console.log(term.length, filteredProducts.length)
+  // yield put(productSliceActions.setProducts(filteredProducts));
+  yield put(productSliceActions.setProductRequestCompleted());
+}
 // Watcher Saga: Listens for FETCH_DATA_REQUEST action and triggers fetchDataSaga
-function* watchProductFetch() {
+export function* watchProductFetch() {
   yield takeEvery(`${productSliceActionsTypes}/setProductRequestLoading`, setProducts);
 }
 
-export default watchProductFetch;
+export function* watchProductSearch() {
+  yield takeEvery(`${productSliceActionsTypes}/setProductRequestSearch`, setSearchProducts);
+}

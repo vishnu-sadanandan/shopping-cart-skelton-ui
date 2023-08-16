@@ -7,6 +7,7 @@ import styles from "./App.module.css";
 import CartProvider from "./store/CartProvider";
 import AuthContext from "./store/auth-context";
 import PageRouterProvider from "./router/PageRouterProvider"
+import Filters from "./components/Filters";
 
 const App = () => {
   const useAuthContext = useContext(AuthContext);
@@ -30,6 +31,7 @@ const App = () => {
           {!useAuthContext.isLoggedIn && <Login />}
           {useAuthContext.isLoggedIn && <HeaderMenu onCartOpen={onCartOpen} />}
           {/* <Home /> */}
+          <Filters />
           <PageRouterProvider />
           {isCartOpen && (
             <OpenCart

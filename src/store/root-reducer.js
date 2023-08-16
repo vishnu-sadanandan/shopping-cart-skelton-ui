@@ -33,6 +33,14 @@ const productSlice = createSlice({
         isLoading: true
       };
     },
+    setProductRequestSearch(state, action) {
+      const term = action.payload
+      return {
+        ...state,
+        isLoading: true,
+        searchTerm: term
+      };
+    },
     setProductRequestCompleted(state, action) {
       return {
         ...state,
@@ -208,6 +216,7 @@ export const cartSliceActions = cartSlice.actions;
 
 export const productSliceActions = productSlice.actions;
 export const productSliceActionsTypes = productSlice.name;
+export const selectProducts = (state) => state.items
 
 export const orderSliceActions = orderSlice.actions;
 export const orderSliceActionsTypes = orderSlice.name;

@@ -1,7 +1,8 @@
 .meals {
-    max-width: 45rem;
-    width: 90%;
-    margin: 6rem auto;
+    max-width: 80rem;
+    top: 20%;
+    left: 20%;
+    position: fixed;
     animation: meals-appear 1s ease-out forwards;
   }
 
@@ -9,6 +10,21 @@
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+  .productGridContainer {
+    max-height: 500px; /* Adjust the height as needed */
+    overflow-y: auto;
+  }
+
+  .productGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+  }
+  .productGrid li {
+    flex: 1 0 calc(33.33% - 20px); /* Adjust as needed based on desired number of columns */
   }
 
   @keyframes meals-appear {

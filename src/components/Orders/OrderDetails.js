@@ -5,7 +5,6 @@ import ProductItem from '../Products/ProductItems/ProductItem';
 
 const OrderItem = (props) => {
   const { order, user, id: orderId } = props
-  console.log(order, user, orderId, props)
   return (
     <>
       <li className={""}>
@@ -15,7 +14,7 @@ const OrderItem = (props) => {
             return (
               <Card>
               <ul>
-                <ProductItem key={product.id} item={product} />
+                  <ProductItem key={product.id} item={product} isEnableAddItem={true} />
               </ul>
               </Card>
             )
