@@ -23,7 +23,7 @@ const SearchFilter = () => {
     return (
         <Input
         label="Search"
-        isClearable
+        // isClearable
         radius="lg"
         classNames={{
         label: "text-black/50 dark:text-white/90",

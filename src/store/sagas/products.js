@@ -48,13 +48,12 @@ function* setSearchProducts(action) {
   const term = action.payload;
   const state = yield select();
   const products = state.product.items
-  let filteredProducts = products.filter((product) =>
+  let filteredProducts = term !== "" ? products.filter((product) =>
     product.name.toLowerCase().includes(term.toLowerCase())
-  );
-  filteredProducts = term !== "" ? filteredProducts : products
-  console.log(term.length, filteredProducts.length)
-  // yield put(productSliceActions.setProducts(filteredProducts));
-  yield put(productSliceActions.setProductRequestCompleted());
+  ) : products;
+  yield put(productSliceActions.setFilteredProducts(filteredProducts));
+  yield put(productSliceActions.setProductRequestSearchCompleted());
+
 }
 // Watcher Saga: Listens for FETCH_DATA_REQUEST action and triggers fetchDataSaga
 export function* watchProductFetch() {

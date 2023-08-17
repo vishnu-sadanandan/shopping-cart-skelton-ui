@@ -2,8 +2,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const defaultState = {
-    items: [],
-    totalAmount: 0,
+  items: [],
+  filteredItems:[],
+  totalAmount: 0,
+  searchTerm:""
   };
 
 const userSlice = createSlice({
@@ -33,12 +35,25 @@ const productSlice = createSlice({
         isLoading: true
       };
     },
+    setFilteredProducts(state, action) {
+      const items = action.payload;
+      return {
+        ...state,
+        filteredItems: items
+      };
+    },
     setProductRequestSearch(state, action) {
       const term = action.payload
       return {
         ...state,
         isLoading: true,
         searchTerm: term
+      };
+    },
+    setProductRequestSearchCompleted(state) {
+      return {
+        ...state,
+        isLoading: false,
       };
     },
     setProductRequestCompleted(state, action) {
@@ -216,7 +231,6 @@ export const cartSliceActions = cartSlice.actions;
 
 export const productSliceActions = productSlice.actions;
 export const productSliceActionsTypes = productSlice.name;
-export const selectProducts = (state) => state.items
 
 export const orderSliceActions = orderSlice.actions;
 export const orderSliceActionsTypes = orderSlice.name;
