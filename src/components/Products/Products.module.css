@@ -19,12 +19,12 @@
   .productGrid {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 5px;
     list-style: none;
     padding: 0;
   }
   .productGrid li {
-    flex: 1 0 calc(33.33% - 20px); /* Adjust as needed based on desired number of columns */
+    flex: 1 0 calc(18% - 20px); /* Adjust as needed based on desired number of columns */
   }
 
   @keyframes meals-appear {

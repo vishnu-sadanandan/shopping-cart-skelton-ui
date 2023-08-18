@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import styles from "./ProductItem.module.css"
 import ProductItemForm from '../ProductItemsForm/ProductItemForm'
-// import CartContext from '../../../store/cart-context'
 import { connect } from 'react-redux'
 import { cartSliceActions } from '../../../store/root-reducer'
 import { Link } from 'react-router-dom'
+import { Card, CardHeader, CardBody, CardFooter,Image } from "@nextui-org/react";
+
 class ProductItem extends Component {
 
   onItemAdd(item) {
@@ -13,19 +14,31 @@ class ProductItem extends Component {
 
   render() {
     const price = `$${this.props.item.price.toFixed(2)}`
-    const {isEnableAddItem} = this.props;
+    const { isEnableAddItem } = this.props;
     return (
       <>
         <li className={styles.item}>
           <div>
-            <div><Link to={this.props.item.id}>{this.props.item.name}</Link></div>
-            <div className={styles.description}>{this.props.item.description}</div>
-            <div className={styles.price}>{price}</div>
+          <Card className="py-4">
+    <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+      <p className="text-tiny uppercase font-bold"><Link to={this.props.item.id}>{this.props.item.name}</Link></p>
+      <small className="text-default-500">{this.props.item.description}</small>
+    </CardHeader>
+    <CardBody className="overflow-visible py-2">
+      <Image
+        width={300}
+        alt="NextUI hero Image"
+        src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
+      />
+      </CardBody>
+      <CardFooter className="text-small justify-between">
+        <b>{price}</b>
+        <p className="text-default-500">
+          {!isEnableAddItem && <ProductItemForm {...this.props.item} onItemAdd={this.onItemAdd.bind(this)} />}
+        </p>
+      </CardFooter>
+  </Card>
           </div>
-          {!isEnableAddItem && <div>
-            <ProductItemForm {...this.props.item} onItemAdd={this.onItemAdd.bind(this)} />
-          </div>
-          }
         </li>
       </>
     );
