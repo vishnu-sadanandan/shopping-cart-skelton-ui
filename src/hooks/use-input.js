@@ -61,7 +61,7 @@ const useInput = (
       {isInputInValid && <p>{inputName} is empty</p>}
     </>
   );
-  return [enteredInput, isInputInValid, resetInput, InputUI, isEnteredInputValid];
+  return [enteredInput, isInputInValid, resetInput, InputUI, isEnteredInputValid, onInputChangeHandler, onInputBlurHandler];
 };
 
 export default useInput;

@@ -2,6 +2,7 @@ import styles from "./OpenCart.module.css";
 import Modal from "../../UI/Modal/Modal";
 import CartItemsTotal from "./CartItemsTotal";
 import Checkout from "./Checkout";
+import { Link } from "react-router-dom";
 
 const OpenCart = (props) => {
   return (
@@ -16,9 +17,12 @@ const OpenCart = (props) => {
             </button>
           </div>
           <div className={styles.right}>
-            <button className={styles["button"]} onClick={props.onCheckoutFormOpen}>
+            <Link to="/checkout">
+              {/* {onClick={props.onCheckoutFormOpen}} */}
+            <button className={styles["button"]} >
               {props.showCehckoutForm ? `Cancel` : `Order`}
             </button>
+          </Link>
           </div>
           </div>
       </Modal>

@@ -5,7 +5,6 @@ import CartContext from "../../../store/cart-context";
 import { useDispatch, useSelector } from "react-redux";
 
 const HeaderCartButton = (props) => {
-  // const useCartContext = useContext(CartContext)
   const [isBtnBumper, setBtnBumper] = useState(false);
   const items = useSelector(state => state.cart.items)
 

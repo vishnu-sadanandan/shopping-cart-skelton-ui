@@ -7,8 +7,7 @@ import store from "./store/redux-store"
 import { Provider } from 'react-redux';
 import { AuthContextProvider } from './store/auth-context';
 import { NextUIProvider } from "@nextui-org/react";
-import 'tailwindcss/tailwind.css'; // Import Tailwind's base styles
-
+import { BrowserRouter } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -16,7 +15,7 @@ root.render(
   <AuthContextProvider>
     <Provider store={store}>
       <NextUIProvider>
-        <App />
+          <App />
       </NextUIProvider>
     </Provider>
   </AuthContextProvider>

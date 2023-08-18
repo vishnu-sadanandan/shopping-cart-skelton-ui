@@ -1,9 +1,8 @@
-import React, { useContext, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import useInput from "../../hooks/use-input";
 import styles from "./Checkout.module.css"
 import useHttp from "../../hooks/use-http";
-import CartContext from "../../store/cart-context";
-import { useSelector } from "react-redux";
+import { useSelector, useStore } from "react-redux";
 
 const apiUrl = "https://react-http-a675e-default-rtdb.firebaseio.com/order.json";
 
@@ -16,7 +15,6 @@ const Checkout = () => {
   const [orderResponse, setOrderResponse] = useState(null);
 
   const storeProducts = useSelector(state => state.cart.items);
-
   const onFormSubmit = (event) => {
     event.preventDefault();
     if (isFormValid && isEnteredNameValid && isEnteredAddressValid) {

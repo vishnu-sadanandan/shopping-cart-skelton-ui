@@ -20,24 +20,24 @@ class ProductItem extends Component {
         <li className={styles.item}>
           <div>
           <Card className="py-4">
-    <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-      <p className="text-tiny uppercase font-bold"><Link to={this.props.item.id}>{this.props.item.name}</Link></p>
-      <small className="text-default-500">{this.props.item.description}</small>
-    </CardHeader>
-    <CardBody className="overflow-visible py-2">
-      <Image
-        width={300}
-        alt="NextUI hero Image"
-        src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-      />
-      </CardBody>
-      <CardFooter className="text-small justify-between">
-        <b>{price}</b>
-        <p className="text-default-500">
-          {!isEnableAddItem && <ProductItemForm {...this.props.item} onItemAdd={this.onItemAdd.bind(this)} />}
-        </p>
-      </CardFooter>
-  </Card>
+            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+              <p className="text-tiny uppercase font-bold"><Link to={this.props.item.id}>{this.props.item.name}</Link></p>
+              <small className="text-default-500">{this.props.item.description}</small>
+            </CardHeader>
+            <CardBody className="overflow-visible py-2">
+              <Image
+                width={300}
+                alt="NextUI hero Image"
+                src="https://img.freepik.com/premium-photo/manchurian-hakka-schezwan-noodles-popular-indochinese-food-served-bowl_466689-46524.jpg?w=360"
+              />
+              </CardBody>
+              <CardFooter className="text-small justify-between">
+                <b>{price}</b>
+                <p className="text-default-500">
+                  {!isEnableAddItem && <ProductItemForm {...this.props.item} onItemAdd={this.onItemAdd.bind(this)} />}
+                </p>
+              </CardFooter>
+          </Card>
           </div>
         </li>
       </>

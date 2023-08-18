@@ -1,13 +1,11 @@
 import React from "react";
 import styles from "./OpenCart.module.css";
 import CartItem from "./CartItem";
-// import CartContext from "../../store/cart-context";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSliceActions } from '../../store/root-reducer'
 
 const OpenCart = () => {
-  // const useCartContext = useContext(CartContext);
-  // const totalAmount = useCartContext.totalAmount;
+
   const dispatchFromStore = useDispatch();
 
   const onItemAdd = (item) => {
